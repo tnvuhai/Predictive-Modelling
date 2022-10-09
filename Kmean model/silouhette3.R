@@ -1,14 +1,16 @@
 library(tidyverse)  # data manipulation
 library(cluster)    # clustering algorithms
 library(factoextra) # clustering algorithms & visualization
-df  <-  USArrests
+df <- USArrests
 df <- na.omit(df)
 
 df <- scale(df)
 head(df)
 distance <- get_dist(df)
 
-fviz_dist(distance, gradient = list(low = "#00AFBB", mid = "white", high = "#FC4E07"))
+fviz_dist(distance, gradient = list(low = "#00AFBB", 
+                                    mid = "white", high = "#FC4E07"))
+# Using kmeans
 k2 <- kmeans(df, centers = 2, nstart = 25)
 str(k2)
 fviz_cluster(k2, data = df)
@@ -51,3 +53,4 @@ plot(k.values, avg_sil_values,
 
 
 fviz_nbclust(df, kmeans, method = "silhouette")
+=
